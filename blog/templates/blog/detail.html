@@ -1,0 +1,26 @@
+{% extends 'parent/base.html' %}
+{% load blog_tags %}
+{% load jformat %}
+{% block title %}posts_detail{% endblock %}
+{% block content %}
+
+    <h1>post detail</h1>
+    <h2>{{ post.title }}
+        by: {{ post.author }}</h2>
+    <p> {{ post.description | markdown}}</p>
+    <hr>
+    <span>{{ post.publish |jformat}}</span>
+    <hr>
+    <hr>
+    <hr>
+    <p>{{ post.reading_time }} reading time</p>
+    <hr>
+    <hr>
+    <hr>
+    <form method="post" action="{% url 'blog:comment' post.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <input type="submit" value="افزودن کامنت">
+    </form>
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends 'parent/base.html' %}
+{% load blog_tags %}
+
+{% block title %}index{% endblock %}
+{% block content %}
+    <h2>آمار وبسایت</h2>
+    <p>تعداد پست ها{% posts_number %}</p>
+    <p> {% comment_count %}تعداد کامنت</p>
+    <p>تاریخ آخرین پست{% lastp %}</p>
+     <p>{% readingtimesum %}</p>
+    <p>{{ rt }}</p>
+    <hr>
+     {% latest_posts %}
+
+    <h2>محبوب ترین پست ها</h2>
+    {% most_pop_posts as pop_posts %}
+    {% for posts in pop_posts %}
+        <a href="{{ posts.get_absolutue_url }}">{{ posts.title }}</a>
+        <p>{{ posts.comments_count}}</p>
+        <br>
+    {% endfor %}
+
+    <hr>
+    <h1>آخرین پست ها</h1>
+
+    {% lapo as f %}
+    {% for posts in f %}
+
+        <a href="{{ posts.get_absolutue_url }}">{{ posts.title }}</a>
+        <br>
+    {% endfor %}
+    <hr>
+    <h1>اخرین پست ها</h1>
+    {% for posts in lp %}
+        <a href="{{ posts.get_absolutue_url }}">{{ posts.title }}</a>
+        <br>
+
+    {% endfor %}
+
+
+
+{% endblock %}
